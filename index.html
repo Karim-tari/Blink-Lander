@@ -520,12 +520,12 @@
                              ease: "power2.inOut"
                          });
                      }
-                 } else {
-                     audioElement.pause();
-                     audioElement.currentTime = 0;
-                     resetTextToGrey();
-                     if (highlightInterval) clearInterval(highlightInterval);
-                 }
+                                 } else {
+                    audioElement.pause();
+                    audioElement.currentTime = 0;
+                    resetTextToWhite();
+                    if (highlightInterval) clearInterval(highlightInterval);
+                }
              });
              
              // Reset text when audio ends
@@ -852,6 +852,204 @@
                 }, 200);
             }
                  });
+
+        // Email validation and signup functionality
+        // signupButton and signupInput are already declared above
+        
+        // Email validation function
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Show message function with slick animations
+        function showMessage(message, isSuccess = false) {
+            const signupContainer = document.querySelector('.signup-container');
+            
+            if (isSuccess) {
+                // For success: Replace the entire form with the message
+                showSuccessMessage(message, signupContainer);
+            } else {
+                // For errors: Show floating message above form
+                showErrorMessage(message, signupContainer);
+            }
+        }
+        
+        function showSuccessMessage(message, signupContainer) {
+            if (typeof gsap !== 'undefined') {
+                // Create success message element
+                const successEl = document.createElement('div');
+                successEl.className = 'signup-success-message';
+                successEl.innerHTML = `
+                    <div class="success-icon">✓</div>
+                    <div class="success-text">${message}</div>
+                `;
+                
+                // Timeline for smooth transition
+                const tl = gsap.timeline();
+                
+                // Animate form out
+                tl.to(signupContainer, {
+                    scale: 0.95,
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.4,
+                    ease: "power2.inOut"
+                })
+                // Replace content
+                .call(() => {
+                    signupContainer.parentNode.insertBefore(successEl, signupContainer);
+                    signupContainer.style.display = 'none';
+                })
+                // Animate success message in
+                .fromTo(successEl, 
+                    { 
+                        scale: 0.8, 
+                        opacity: 0, 
+                        y: 20,
+                        rotationX: -15
+                    },
+                    { 
+                        scale: 1, 
+                        opacity: 1, 
+                        y: 0,
+                        rotationX: 0,
+                        duration: 0.6, 
+                        ease: "back.out(1.7)"
+                    }
+                )
+                // Add subtle floating animation
+                .to(successEl, {
+                    y: -3,
+                    duration: 2,
+                    ease: "sine.inOut",
+                    yoyo: true,
+                    repeat: -1
+                });
+            } else {
+                // Fallback without GSAP
+                const successEl = document.createElement('div');
+                successEl.className = 'signup-success-message';
+                successEl.innerHTML = `
+                    <div class="success-icon">✓</div>
+                    <div class="success-text">${message}</div>
+                `;
+                signupContainer.parentNode.insertBefore(successEl, signupContainer);
+                signupContainer.style.display = 'none';
+            }
+        }
+        
+        function showErrorMessage(message, signupContainer) {
+            // Remove any existing error message
+            const existingError = document.querySelector('.signup-error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Create error message element
+            const errorEl = document.createElement('div');
+            errorEl.className = 'signup-error-message';
+            errorEl.innerHTML = `
+                <div class="error-icon">⚠</div>
+                <div class="error-text">${message}</div>
+            `;
+            
+            // Insert above the signup container
+            signupContainer.parentNode.insertBefore(errorEl, signupContainer);
+            
+            if (typeof gsap !== 'undefined') {
+                // Shake the form
+                gsap.to(signupContainer, {
+                    x: -5,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 5,
+                    ease: "power2.inOut"
+                });
+                
+                // Animate error message in
+                gsap.fromTo(errorEl, 
+                    { 
+                        opacity: 0, 
+                        y: -15,
+                        scale: 0.9
+                    },
+                    { 
+                        opacity: 1, 
+                        y: 0,
+                        scale: 1,
+                        duration: 0.4, 
+                        ease: "back.out(1.7)"
+                    }
+                );
+                
+                // Auto-hide after 4 seconds with slick animation
+                setTimeout(() => {
+                    if (errorEl && errorEl.parentNode) {
+                        gsap.to(errorEl, {
+                            opacity: 0,
+                            y: -15,
+                            scale: 0.9,
+                            duration: 0.3,
+                            ease: "power2.in",
+                            onComplete: () => errorEl.remove()
+                        });
+                    }
+                }, 4000);
+            }
+        }
+        
+        // Handle signup button click
+        signupButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = signupInput.value.trim();
+            const isVip = signupInput.type === 'text'; // VIP mode uses text input
+            
+            if (isVip) {
+                // Handle VIP code entry
+                if (email === '') {
+                    showMessage('Please enter a VIP code.');
+                    return;
+                }
+                // For now, just show a generic message for VIP codes
+                showMessage('VIP code submitted! We\'ll verify and get back to you soon.', true);
+                signupInput.value = '';
+            } else {
+                // Handle email signup
+                if (email === '') {
+                    showMessage('Please enter your email address.');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showMessage('Invalid email');
+                    return;
+                }
+                
+                // Success message
+                showMessage('Welcome to the waitlist. We\'ll notify you when your VIP access is ready.', true);
+                signupInput.value = '';
+            }
+            
+            // Button animation feedback
+            if (typeof gsap !== 'undefined') {
+                gsap.to(signupButton, {
+                    scale: 0.95,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: "power2.inOut"
+                });
+            }
+        });
+        
+        // Also handle Enter key press on input
+        signupInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                signupButton.click();
+            }
+        });
     </script>
 </body>
 </html>
