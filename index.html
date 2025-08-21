@@ -180,17 +180,28 @@
                 });
             }
             
-            // Navigation logo animation (smaller, looping)
+            // Navigation logo animation (smaller, plays once)
             const logoContainer = document.getElementById('lottie-logo');
             if (logoContainer) {
                 navLogoAnimation = lottie.loadAnimation({
                     container: logoContainer,
                     renderer: 'svg',
-                    loop: true,
+                    loop: false,
                     autoplay: true,
                     animationData: lottieData
                 });
                 console.log('🎬 Navigation logo animation loaded successfully');
+                
+                // Add click handler to replay animation
+                logoContainer.addEventListener('click', function() {
+                    if (navLogoAnimation) {
+                        navLogoAnimation.goToAndPlay(0);
+                        console.log('🎬 Navigation logo animation replayed');
+                    }
+                });
+                
+                // Add cursor pointer style to indicate it's clickable
+                logoContainer.style.cursor = 'pointer';
             }
         } else {
             console.error('🎬 Lottie library not loaded');
