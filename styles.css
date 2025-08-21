@@ -268,14 +268,14 @@ body {
     font-family: 'Noto Sans', sans-serif;
     background: transparent;
     border: none;
-    padding: 12px 20px;
+    padding: 16px 24px;
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
     outline: none;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -746,30 +746,31 @@ body {
     .email-signup {
         flex-direction: column;
         align-items: center;
-        padding: 20px;
-        gap: 15px;
+        padding: 0;
+        gap: 20px;
         max-width: 100%;
         width: 100%;
-        border: 2px solid #fff;
-        border-radius: 25px;
-        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        border-radius: 0;
+        background: transparent;
     }
     
     .email-input {
         width: 100%;
         text-align: center;
-        padding: 15px 20px;
-        font-size: 11px;
+        padding: 18px 24px;
+        font-size: 12px;
         border-radius: 25px;
-        border: none;
-        background: transparent;
+        border: 2px solid #fff;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .join-waitlist-btn {
         width: 100%;
         margin: 0;
-        padding: 15px 20px;
-        font-size: 11px;
+        padding: 18px 24px;
+        font-size: 12px;
         border-radius: 25px;
     }
     
@@ -824,17 +825,20 @@ body {
     }
     
     .email-signup {
-        padding: 15px;
-        gap: 12px;
+        padding: 0;
+        gap: 18px;
     }
     
     .email-input {
-        padding: 14px 18px;
+        padding: 16px 20px;
         font-size: 11px;
+        border: 2px solid #fff;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .join-waitlist-btn {
-        padding: 14px 18px;
+        padding: 16px 20px;
         font-size: 11px;
     }
 }
@@ -869,17 +873,20 @@ body {
     }
     
     .email-signup {
-        padding: 12px;
-        gap: 10px;
+        padding: 0;
+        gap: 15px;
     }
     
     .email-input {
-        padding: 12px 15px;
+        padding: 14px 18px;
         font-size: 10px;
+        border: 2px solid #fff;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .join-waitlist-btn {
-        padding: 12px 15px;
+        padding: 14px 18px;
         font-size: 10px;
     }
     
@@ -955,17 +962,20 @@ body {
     }
     
     .email-signup {
-        padding: 10px;
-        gap: 8px;
+        padding: 0;
+        gap: 12px;
     }
     
     .email-input {
-        padding: 10px 12px;
+        padding: 12px 15px;
         font-size: 9px;
+        border: 2px solid #fff;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .join-waitlist-btn {
-        padding: 10px 12px;
+        padding: 12px 15px;
         font-size: 9px;
     }
     
