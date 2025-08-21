@@ -350,6 +350,44 @@ body {
     opacity: 1;
 }
 
+/* VIP Access Button - Special styling */
+.join-waitlist-btn.vip-mode {
+    background: linear-gradient(135deg, #ffff00 0%, #f0f000 100%);
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.join-waitlist-btn.vip-mode::before {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.join-waitlist-btn.vip-mode:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.join-waitlist-btn.vip-mode .btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.join-waitlist-btn.vip-mode .btn-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #000;
+    transition: fill 0.3s ease;
+}
+
+.join-waitlist-btn.vip-mode:hover .btn-icon svg {
+    fill: #fff;
+}
+
 .vip-code-link {
     font-family: 'Noto Sans', sans-serif;
     color: #fff;
@@ -560,6 +598,29 @@ body {
 }
 
 /* Responsive Design */
+
+/* Large tablets and small desktops */
+@media (max-width: 1200px) {
+    .main-content {
+        padding: 50px 40px 40px;
+        gap: 50px;
+    }
+    
+    .left-content {
+        max-width: 480px;
+    }
+    
+    .right-content {
+        max-width: 350px;
+    }
+    
+    .description-text {
+        font-size: 12px;
+        max-width: 350px;
+    }
+}
+
+/* Tablets */
 @media (max-width: 1024px) {
     .main-content {
         flex-direction: column;
@@ -597,6 +658,33 @@ body {
     }
 }
 
+/* Small tablets and large phones */
+@media (max-width: 900px) {
+    .main-headline {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 85%;
+    }
+    
+    .sub-headline {
+        font-size: 12px;
+        max-width: 450px;
+    }
+    
+    .signup-container {
+        gap: 25px;
+    }
+    
+    .email-signup {
+        max-width: 450px;
+    }
+    
+    .description-text {
+        font-size: 11px;
+        max-width: 400px;
+    }
+}
+
+/* Mobile phones */
 @media (max-width: 768px) {
     .top-nav {
         padding: 15px 20px;
@@ -718,6 +806,40 @@ body {
     }
 }
 
+/* Large phones landscape and small phones */
+@media (max-width: 640px) {
+    .main-content {
+        padding: 25px 20px 20px;
+        gap: 25px;
+    }
+    
+    .main-headline {
+        font-size: clamp(2rem, 10vw, 3rem);
+        margin-bottom: 18px;
+    }
+    
+    .sub-headline {
+        font-size: 11px;
+        margin-bottom: 35px;
+    }
+    
+    .email-signup {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .email-input {
+        padding: 14px 18px;
+        font-size: 11px;
+    }
+    
+    .join-waitlist-btn {
+        padding: 14px 18px;
+        font-size: 11px;
+    }
+}
+
+/* Small phones */
 @media (max-width: 480px) {
     .top-nav {
         padding: 12px 15px;
@@ -731,21 +853,23 @@ body {
     
     .main-content {
         padding: 20px 15px 15px;
-        gap: 25px;
+        gap: 20px;
     }
     
     .main-headline {
-        font-size: clamp(1.8rem, 15vw, 2.8rem);
+        font-size: clamp(1.8rem, 12vw, 2.5rem);
         margin-bottom: 15px;
+        line-height: 90%;
     }
     
     .sub-headline {
         font-size: 10px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        line-height: 130%;
     }
     
     .email-signup {
-        padding: 10px;
+        padding: 12px;
         gap: 10px;
     }
     
@@ -761,6 +885,13 @@ body {
     
     .vip-code-link {
         font-size: 10px;
+    }
+    
+    /* VIP button adjustments for mobile */
+    .join-waitlist-btn.vip-mode .btn-icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 6px;
     }
     
     .description-text {
@@ -802,6 +933,63 @@ body {
     .image-placeholder {
         animation: none;
         opacity: 1;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 15px 12px 12px;
+        gap: 18px;
+    }
+    
+    .main-headline {
+        font-size: clamp(1.6rem, 14vw, 2.2rem);
+        margin-bottom: 12px;
+    }
+    
+    .sub-headline {
+        font-size: 9px;
+        margin-bottom: 20px;
+        line-height: 140%;
+    }
+    
+    .email-signup {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .email-input {
+        padding: 10px 12px;
+        font-size: 9px;
+    }
+    
+    .join-waitlist-btn {
+        padding: 10px 12px;
+        font-size: 9px;
+    }
+    
+    .join-waitlist-btn.vip-mode .btn-icon {
+        width: 12px;
+        height: 12px;
+        margin-right: 4px;
+    }
+    
+    .vip-code-link {
+        font-size: 9px;
+    }
+    
+    .bottom-nav {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .social-link {
+        font-size: 9px;
+    }
+    
+    .live-counter {
+        font-size: 8px;
     }
 }
 
@@ -963,38 +1151,92 @@ body {
 /* Mobile responsiveness for messages */
 @media (max-width: 768px) {
     .signup-success-message {
-        padding: 40px 24px;
-        border-radius: 20px;
+        padding: 35px 20px;
+        border-radius: 18px;
     }
     
     .success-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
-        margin-bottom: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 18px;
         box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.1);
     }
     
     .success-text {
-        font-size: 14px;
-        max-width: 280px;
+        font-size: 13px;
+        max-width: 260px;
     }
     
     .signup-error-message {
-        padding: 16px 20px;
+        padding: 14px 18px;
         margin-bottom: 16px;
-        border-radius: 14px;
-        gap: 12px;
+        border-radius: 12px;
+        gap: 10px;
     }
     
     .error-icon {
-        width: 18px;
-        height: 18px;
-        font-size: 11px;
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
         box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
     }
     
     .error-text {
-        font-size: 13px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-success-message {
+        padding: 30px 18px;
+        border-radius: 16px;
+    }
+    
+    .success-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .success-text {
+        font-size: 12px;
+        max-width: 240px;
+    }
+    
+    .signup-error-message {
+        padding: 12px 16px;
+        margin-bottom: 14px;
+        gap: 8px;
+    }
+    
+    .error-icon {
+        width: 14px;
+        height: 14px;
+        font-size: 9px;
+    }
+    
+    .error-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .signup-success-message {
+        padding: 25px 15px;
+    }
+    
+    .success-text {
+        font-size: 11px;
+        max-width: 220px;
+    }
+    
+    .signup-error-message {
+        padding: 10px 14px;
+    }
+    
+    .error-text {
+        font-size: 10px;
     }
 }
