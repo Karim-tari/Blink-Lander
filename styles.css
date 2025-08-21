@@ -173,7 +173,7 @@ body {
 /* Left Content */
 .left-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 540px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,6 +184,7 @@ body {
     font-size: clamp(3rem, 8vw, 120px);
     font-style: normal;
     font-weight: 400;
+    font-size: 115px;
     line-height: 85%;
     text-transform: uppercase;
     color: #CECFCF;
@@ -811,7 +812,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
     display: flex;
     justify-content: center;
     align-items: center;

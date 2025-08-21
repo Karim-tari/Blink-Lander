@@ -14,13 +14,21 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="nav-left">
-            <div id="lottie-logo" style="width: 130px; height: 37px;"></div>
+            <img id="nav-logo" src="logo.svg" alt="Blink Logo" style="width: 130px; height: 37px; opacity: 0; transition: opacity 0.8s ease;">
         </div>
         <div class="nav-item">CUT THE MIDDLEMAN.</div>
         <div class="nav-item">THE NEW STANDARD OF SHOPPING.</div>
         <div class="nav-item">NO LINES. NO MISSES. JUST BLINK.</div>
         <div class="nav-item">NEVER MISS A DROP.</div>
     </nav>
+
+    <!-- Background Video - Always visible -->
+    <video class="background-video" autoplay muted loop playsinline>
+        <source src="video-bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- Background Image Overlay -->
+    <div class="background-overlay"></div>
 
     <!-- Preloader -->
     <div id="preloader">
@@ -29,33 +37,27 @@
 
     <!-- Main Container -->
     <main class="main-container" id="main-content" style="opacity: 0;">
-        <!-- Background Video -->
-        <video class="background-video" autoplay muted loop playsinline>
-            <source src="video-bg.mp4" type="video/mp4">
-        </video>
-
-        <!-- Background Image Overlay -->
-        <div class="background-overlay"></div>
 
         <!-- Main Content -->
         <div class="main-content">
             <!-- Left Side - Main Headline -->
             <div class="left-content">
                 <h1 class="main-headline">
-                    <span class="headline-word" data-delay="0">A</span>
-                    <span class="headline-word" data-delay="0.1">NEW</span>
-                    <span class="headline-word" data-delay="0.2">WAY</span>
-                    <span class="headline-word" data-delay="0.3">TO</span>
-                    <span class="headline-word" data-delay="0.4">SHOP,</span><br>
-                    <span class="headline-word headline-white" data-delay="0.6">MADE</span>
-                    <span class="headline-word headline-white" data-delay="0.7">FOR</span>
-                    <span class="headline-word headline-white" data-delay="0.8">THE</span>
-                    <span class="headline-word headline-white" data-delay="0.9">DROPS</span><br>
-                    <span class="headline-word headline-white" data-delay="1.1">YOU</span>
-                    <span class="headline-word headline-white" data-delay="1.2">CAN'T</span>
-                    <span class="headline-word headline-white" data-delay="1.3">MISS.</span>
+                    <span class="headline-word" data-delay="0">BLINK</span>
+                    <span class="headline-word" data-delay="0.1">IS</span>
+                    <span class="headline-word" data-delay="0.2">A</span>
+                    <span class="headline-word" data-delay="0.3">BOT</span>
+                    <span class="headline-word headline-white" data-delay="0.4">THAT</span>
+                    <span class="headline-word headline-white" data-delay="0.5">BUYS</span><br>
+                    <span class="headline-word headline-white" data-delay="0.7">ANYTHING</span>
+                    <span class="headline-word headline-white" data-delay="0.8">YOU</span>
+                    <span class="headline-word headline-white" data-delay="0.9">WANT,</span>
+                    <span class="headline-word headline-white" data-delay="1.0">FROM</span>
+                    <span class="headline-word headline-white" data-delay="1.1">ANY</span><br>
+                    <span class="headline-word headline-white" data-delay="1.3">ONLINE</span>
+                    <span class="headline-word headline-white" data-delay="1.4">STORE.</span>
                 </h1>
-                <p class="sub-headline">THE THINGS YOU WANT. THE MOMENT THEY DROP. BLINK MAKES SHOPPING EFFORTLESS. A FASTER AND SMARTER WAY TO BUY.</p>
+                <p class="sub-headline">Blink is relentless. Like R2D2 save the rebellion relentless. With Blink, you'll never miss another drop.</p>
                 
                 <!-- Signup Form -->
                 <div class="signup-container">
@@ -180,28 +182,10 @@
                 });
             }
             
-            // Navigation logo animation (smaller, plays once)
-            const logoContainer = document.getElementById('lottie-logo');
-            if (logoContainer) {
-                navLogoAnimation = lottie.loadAnimation({
-                    container: logoContainer,
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: true,
-                    animationData: lottieData
-                });
-                console.log('🎬 Navigation logo animation loaded successfully');
-                
-                // Add click handler to replay animation
-                logoContainer.addEventListener('click', function() {
-                    if (navLogoAnimation) {
-                        navLogoAnimation.goToAndPlay(0);
-                        console.log('🎬 Navigation logo animation replayed');
-                    }
-                });
-                
-                // Add cursor pointer style to indicate it's clickable
-                logoContainer.style.cursor = 'pointer';
+            // Static navigation logo - will fade in after preloader
+            const navLogo = document.getElementById('nav-logo');
+            if (navLogo) {
+                console.log('🎬 Static navigation logo ready');
             }
         } else {
             console.error('🎬 Lottie library not loaded');
@@ -239,38 +223,45 @@
         function startIntroAnimations() {
             console.log('🎬 Starting intro animations');
             
-            // 1. Start navigation animations
+            // 1. Fade in navigation logo
+            const navLogo = document.getElementById('nav-logo');
+            if (navLogo) {
+                navLogo.style.opacity = '1';
+                console.log('🎬 Navigation logo faded in');
+            }
+            
+            // 2. Start navigation animations
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => {
                 item.classList.add('animate');
             });
             
-            // 2. Start headline scramble animations (delay 0.5s)
+            // 3. Start headline scramble animations (delay 0.5s)
             setTimeout(() => {
                 startHeadlineAnimations();
             }, 500);
             
-            // 3. Start description text animation (delay 1s)
+            // 4. Start description text animation (delay 1s)
             setTimeout(() => {
                 animateDescriptionText();
             }, 1000);
             
-            // 4. Start sub-headline animation (delay 2.5s - after headline completes)
+            // 5. Start sub-headline animation (delay 2.5s - after headline completes)
             setTimeout(() => {
                 animateSubHeadline();
             }, 2500);
             
-            // 5. Start signup form animation (delay 3s - after sub-headline)
+            // 6. Start signup form animation (delay 3s - after sub-headline)
             setTimeout(() => {
                 animateSignupForm();
             }, 3000);
             
-            // 6. Start counter animation (delay 3.5s)
+            // 7. Start counter animation (delay 3.5s)
             setTimeout(() => {
                 animateCounter();
             }, 3500);
             
-            // 7. Start image reveal animation (delay 4s)
+            // 8. Start image reveal animation (delay 4s)
             setTimeout(() => {
                 startImageAnimations();
             }, 4000);
