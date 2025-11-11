@@ -173,7 +173,7 @@ body {
 /* Left Content */
 .left-content {
     flex: 1;
-    max-width: 540px;
+    max-width: 1090px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,7 +184,7 @@ body {
     font-size: clamp(3rem, 8vw, 120px);
     font-style: normal;
     font-weight: 400;
-    font-size: 115px;
+    font-size: 135px;
     line-height: 85%;
     text-transform: uppercase;
     color: #CECFCF;
